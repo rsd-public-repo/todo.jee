@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="todo">
+<head>
+<title>Sample App</title>
+<!-- Add JQuery + Bootstrap JS / CSS + AngularJS-->
+<script src="webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="webjars/angularjs/1.4.6/angular.js"></script>
+<!-- Our Script -->
+<script src="js/main.js"></script>
+</head>
+<body ng-controller="MainController">
+	<!-- Our HTML -->
+	<div class="container">
+		<h1>ToDo List</h1>
+		<div class="row">
+			<form role="form">
+				<div class="form-group">
+					<label for="newItemDetails">New Item Details:</label>
+					<div class="input-group">
+						<input type="text" class="form-control"
+							placeholder="Details of new todo item"
+							ng-model="vm.newItemDetails" /> <span class="input-group-btn">
+							<button type="submit" class="btn btn-primary"
+					ng-click="vm.addItem()" ng-disabled="!vm.newItemDetails">Add</button>
+						</span>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- Existing items rows -->
+		<div class="row">
+			<div ng-repeat="item in vm.list" style="padding: 10px">
+				<button class="btn btn-danger" ng-click="vm.removeItem(item)">x</button>
+				{{item.details}}
+			</div>
+		</div>
+		<!-- New Item row -->
+
+	</div>
+</body>
