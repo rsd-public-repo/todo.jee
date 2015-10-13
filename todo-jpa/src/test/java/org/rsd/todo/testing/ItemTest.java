@@ -72,10 +72,11 @@ public class ItemTest {
 	// ======================================
 
 	@Test
-	public void executeBookTest() throws Exception {
+	public void executeItemTest() throws Exception {
 		entityManagerNotNull();
-		shouldFindItem();
 		shouldCreateNewItem();
+		shouldFindItem();
+		shouldDeleteNewItem();
 		shouldRaiseConstraintViolationCauseNullTitle();
 	}
 
@@ -95,7 +96,7 @@ public class ItemTest {
 	public void shouldCreateNewItem() throws Exception {
 		System.out.println("Executing shouldCreateNewItem");
 
-		// Creates an instance of book
+		// Creates an instance of item
 		Item item = new Item("New Item", false);
 
 		Set<ConstraintViolation<Item>> violations = validator.validate(item);
@@ -103,27 +104,57 @@ public class ItemTest {
 
 		System.out.println("shouldCreateNewItem validation succeeded");
 
-		// Persists the book to the database
+		// Persists the item to the database
 		tx.begin();
 		em.persist(item);
 		tx.commit();
 		assertNotNull("ID should not be null", item.getId());
 
-		System.out.println("shouldCreateNewItem persisted the book");
+		System.out.println("shouldCreateNewItem persisted the item");
 
-		// Retrieves all the books from the database
+		// Retrieves all the items from the database
 		List<Item> items = em.createNamedQuery("findNewItem", Item.class)
 				.getResultList();
+		// There should be only one "New Item" in the list
 		assertEquals(1, items.size());
 		item = em.createNamedQuery("findNewItem", Item.class)
 				.getSingleResult();
-		System.out.println("shouldCreateNewItem found a book");
+		System.out.println("shouldCreateNewItem found a item");
 
 		assertEquals("New Item",
 				item.getDetails());
 
 		System.out
 				.println("shouldCreateNewItem found The New Item");
+	}
+	
+	public void shouldDeleteNewItem() throws Exception {
+		System.out.println("Executing shouldDeleteNewItem");
+
+		// Finds the new item in the database
+		Item item = em.createNamedQuery("findNewItem", Item.class)
+				.getSingleResult();
+		System.out.println("shouldCreateNewItem found an item");
+
+		assertEquals("New Item",
+				item.getDetails());
+		
+		// Deletes the item from the database
+		tx.begin();
+		em.remove(item);
+		tx.commit();
+		
+		// The item is removed from the database but the object is still accessible
+		assertNotNull("Item should not be null", item);
+
+		// Try to find the item in the database
+		List<Item> items = em.createNamedQuery("findNewItem", Item.class)
+				.getResultList();
+		// The item should not be in the database
+		assertEquals(0, items.size());
+
+		System.out
+				.println("shouldDeleteNewItem deleted The New Item");
 	}
 
 	public void shouldRaiseConstraintViolationCauseNullTitle() {

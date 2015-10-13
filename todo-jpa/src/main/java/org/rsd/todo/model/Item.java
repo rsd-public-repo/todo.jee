@@ -1,5 +1,8 @@
 package org.rsd.todo.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,7 +16,10 @@ import javax.validation.constraints.NotNull;
 		@NamedQuery(name = "findNewItem", query = "SELECT i FROM Item i WHERE i.details = 'New Item'"),
 		@NamedQuery(name = "findDoneItems", query = "SELECT i FROM Item i WHERE i.done = true"),
 		@NamedQuery(name = "findActiveItems", query = "SELECT i FROM Item i WHERE i.done = false") })
-public class Item {
+public class Item implements Serializable {
+
+	private static final long serialVersionUID = 8742040021467443919L;
+
 	public Item() {
 	}
 
@@ -23,11 +29,11 @@ public class Item {
 	}
 
 	public Long getId() {
-		return id;
+		return _id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this._id = id;
 	}
 
 	public String getDetails() {
@@ -48,7 +54,8 @@ public class Item {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	@Column(name="id")
+	private Long _id;
 	@NotNull
 	private String details;
 	private Boolean done;

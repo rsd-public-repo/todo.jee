@@ -5,7 +5,7 @@
     <artifactId>todo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>todo-ear</artifactId>
+  <artifactId>todo-app</artifactId>
   <packaging>ear</packaging>
   <name>todo-ear</name>
   <description>Project packaging to EAR</description>

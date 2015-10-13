@@ -42,6 +42,11 @@
 			<artifactId>jquery</artifactId>
 			<version>${version.webjar.jquery}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+			<version>${version.webjar.angular}</version>
+		</dependency>
 
 	</dependencies>
 </project>

@@ -47,6 +47,7 @@
 		<!-- WAR web-jars -->
 		<version.webjar.bootstrap>3.3.4</version.webjar.bootstrap>
 		<version.webjar.jquery>2.1.4</version.webjar.jquery>
+		<version.webjar.angular>1.4.6</version.webjar.angular>
 
 	</properties>
 
@@ -250,7 +251,7 @@
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<version>${version.wildfly.maven.plugin}</version>
 				<configuration>
-					<port>9990</port>
+					<port>10090</port>
 					<skip>true</skip>
 				</configuration>
 			</plugin>
