@@ -401,10 +401,4 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
-
-    <deployments>
-        <deployment name="todo-ear.ear" runtime-name="todo-ear.ear">
-            <content sha1="ade704e78e1739156e6be6708a2896797b374e85"/>
-        </deployment>
-    </deployments>
 </server>
