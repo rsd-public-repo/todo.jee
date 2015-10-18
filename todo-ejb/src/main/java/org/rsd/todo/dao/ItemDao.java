@@ -1,7 +1,8 @@
-package org.rsd.model.dao;
+package org.rsd.todo.dao;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,6 +13,7 @@ import org.rsd.todo.model.Item;
 
 @SuppressWarnings("serial")
 @Stateless
+@LocalBean
 public class ItemDao extends AbstractDao<Item> {
 	public ItemDao() {
 		super(Item.class);

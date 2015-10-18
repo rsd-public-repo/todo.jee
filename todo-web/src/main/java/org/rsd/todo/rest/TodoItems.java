@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.logging.Logger;
-import org.rsd.model.dao.ItemDao;
+import org.rsd.todo.dao.ItemDao;
 import org.rsd.todo.model.Item;
 
 //@Local

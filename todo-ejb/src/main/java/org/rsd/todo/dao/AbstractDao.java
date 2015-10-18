@@ -1,4 +1,4 @@
-package org.rsd.model.dao;
+package org.rsd.todo.dao;
 
 import java.io.Serializable;
 import java.util.List;

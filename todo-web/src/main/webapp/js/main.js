@@ -22,7 +22,7 @@ var demoApp = angular.module('todo', []);
 			todoWebService.addItem(item)
 			.then(function (response) {
 				vm.list.push({
-				_id: response.data.id,
+				id: response.data.id,
 				details: response.data.details
 				});
 			}).catch(function (error) {
@@ -33,7 +33,7 @@ var demoApp = angular.module('todo', []);
 		vm.removeItem = function (itemToRemove) {
 			// Remove it from the list and send the server request
 			vm.list = vm.list.filter(function (item) { 
-				return item._id !== itemToRemove._id; 
+				return item.id !== itemToRemove.id; 
 			});
 			
 			todoWebService.removeItem(itemToRemove);
@@ -56,7 +56,7 @@ var demoApp = angular.module('todo', []);
 				return $http.post(root, item);
 			},
 			removeItem: function (item) {
-				return $http.delete(root + '/' + item._id);
+				return $http.delete(root + '/' + item.id);
 			}
 		}
 	}]);
